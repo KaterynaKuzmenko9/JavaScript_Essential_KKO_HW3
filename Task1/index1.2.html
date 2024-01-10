@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Завдання:
+        Напишіть сценарій, який вираховує об'єм циліндра за параметрами, які користувач вводить.
+        Для розрахунку використовуйте формулу V = π * r у квадраті * h.
+        Розмістіть на сторінці два поля введення: перше для радіуса циліндра, друге для висоти циліндра.
+        Об'єм циліндра виведіть у тіло сторінки. -->
+</head>
+<body>
+
+    <label for="radius">Введіть радіус циліндра: </label>
+    <input type="number" id="radius" placeholder="Радіус">
+
+    <br>
+
+    <label for="height">Введіть висоту циліндра: </label>
+    <input type="number" id="height" placeholder="Висота">
+
+    <br>
+
+    <button onclick="calculateVolume()">Розрахувати об'єм</button>
+
+    <p id="result"></p>
+
+    <script>
+    function calculateVolume() {
+        // Отримуємо значення з полів введення
+        var radius = parseFloat(document.getElementById("radius").value);
+        var height = parseFloat(document.getElementById("height").value);
+
+        // Перевіряємо, чи введені значення є числами
+        if (isNaN(radius) || isNaN(height)) {
+            alert("Будь ласка, введіть дійсні числа для радіуса та висоти.");
+            return;
+        }
+
+        // Розраховуємо об'єм циліндра за формулою
+        var volume = Math.PI * Math.pow(radius, 2) * height;
+
+        // Виводимо результат на сторінку
+        document.getElementById("result").innerHTML = "Об'єм циліндра: " + volume.toFixed(2) + " кубічні одиниці";
+    }
+</script>
+    
+</body>
+</html>
