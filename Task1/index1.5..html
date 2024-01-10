@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  Зробіть так, щоб у кожному створеному завданні після тексту завдання створювалася кнопка "Видалити".
+         Під час натисканні на кнопку все завдання має видалятися зі списку завдань. -->
+
+</head>
+<body>
+    <script>
+        let taskNameInput = document.querySelector("#task-name-input");
+        let addTaskButton = document.querySelector("#add-task-btn");
+        let startMessage = document.querySelector("#start-message");
+        let taskList = document.querySelector(".task-list");
+
+        addTaskButton.addEventListener("click", addTaskHandler);
+
+        function createTask(text) {
+            let div = document.createElement("div");
+            div.classList.add("task");
+
+            let input = document.createElement("input");
+            input.addEventListener("click", changeTaskState);
+            input.type = "checkbox";
+
+            let p = document.createElement("p");
+            p.innerText = text;
+
+            div.append(input);
+            div.append(p);
+
+            return div;
+        }
+
+        function changeTaskState() {
+            if (this.checked) {
+                this.parentElement.classList.add("completed");
+            } else { 
+                this.parentElement.classList.remove("completed");
+            }
+        }
+        function deleteTask() {
+            this.parentElement.remove();
+        }
+
+        function addTaskHandler() {
+            if (taskNameInput.value) {
+                if (!startMessage.hidden) startMessage.hidden = true;
+
+                let newTask = createTask(taskNameInput.value);
+                taskList.append(newTask);
+                taskNameInput.value = "";
+            } else { 
+                alert("введіть ім'я завдання");
+            }
+        }
+    </script>
+    
+</body>
+</html>
